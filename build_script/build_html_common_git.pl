@@ -80,7 +80,7 @@ my $theme = "boundless_web";
   "geogig" => {
       "git" => "workshops/geogig/",
       "master_doc" => "index",
-      "project" => "GeoGig Workshop" }
+      "project" => "GeoGig Workshop" },
 
   "frontpage" => {
       "git" => "workshops/_frontpage/",

@@ -3,8 +3,8 @@
 use File::Find;
 
 my $debug = 0;
-my $gitroot = "/var/www/workshops.opengeo.org/workshops.git/";
-my $webroot = "/var/www/workshops.opengeo.org/htdocs/";
+my $gitroot = "/Users/may/Documents/workshops/";
+my $webroot = "/Users/may/Documents/workshops/htdocs/";
 my $tmproot = "/tmp/workshops/";
 my $conffile = "conf.py";
 my @confdirs = ();
@@ -13,78 +13,78 @@ my $theme = "boundless_web";
 
 %workshops = 
 (
-  "geoserver-intro" => { 
-    "git" => "workshops/geoserver/intro",
-    "master_doc" => "index",
-    "project" => "Introduction to GeoServer" },
+#  "geoserver-intro" => { 
+#    "git" => "workshops/geoserver/intro",
+#    "master_doc" => "index",
+#    "project" => "Introduction to GeoServer" },
 
-  "openlayers-intro" => { 
-    "git" => "workshops/openlayers/",
-    "master_doc" => "index",
-    "project" => "Introduction to OpenLayers" },
+#  "openlayers-intro" => { 
+#    "git" => "workshops/openlayers/",
+#    "master_doc" => "index",
+#    "project" => "Introduction to OpenLayers" },
 
-  "postgis-spatialdbtips" => {
-    "git" => "workshops/postgis-spatialdb/",
-    "project" => "Spatial Database Tips and Tricks" },
+#  "postgis-spatialdbtips" => {
+#    "git" => "workshops/postgis-spatialdb/",
+#    "project" => "Spatial Database Tips and Tricks" },
 
   "postgis-intro" => {
      "git" => "workshops/postgis/source/en/",
      "master_doc" => "index",
      "project" => "Introduction to PostGIS" },
 
-  "postgis-intro-jp" => {
-     "git" => "workshops/postgis/source/jp/",
-     "master_doc" => "index",
-     "project" => "Introduction to PostGIS (Japanese)" },
+#  "postgis-intro-jp" => {
+#     "git" => "workshops/postgis/source/jp/",
+#     "master_doc" => "index",
+#     "project" => "Introduction to PostGIS (Japanese)" },
 
-  "suiteintro" => {
-     "git" => "workshops/suiteintro/",
-     "master_doc" => "index",
-     "project" => "Introduction to the OpenGeo Suite" },
+#  "suiteintro" => {
+#     "git" => "workshops/suiteintro/",
+#     "master_doc" => "index",
+#     "project" => "Introduction to the OpenGeo Suite" },
 
-  "tutorial-wordmap" => {
-     "git" => "tutorials/wordmap/",
-     "master_doc" => "index",
-     "project" => "Building a GeoNames Heat Map" },
+#  "tutorial-wordmap" => {
+#     "git" => "tutorials/wordmap/",
+#     "master_doc" => "index",
+#     "project" => "Building a GeoNames Heat Map" },
 
-  "tutorial-censusmap" => {
-     "git" => "tutorials/censusmap/",
-     "master_doc" => "index",
-     "project" => "Building a Census Map" },
+#  "tutorial-censusmap" => {
+#     "git" => "tutorials/censusmap/",
+#     "master_doc" => "index",
+#     "project" => "Building a Census Map" },
 
-  "tutorial-lidar" => {
-     "git" => "tutorials/lidarkml/",
-     "master_doc" => "index",
-     "project" => "Analyzing and Visualizing LIDAR" },
+#  "tutorial-lidar" => {
+#     "git" => "tutorials/lidarkml/",
+#     "master_doc" => "index",
+#     "project" => "Analyzing and Visualizing LIDAR" },
      
-  "tutorial-osm" => {
-     "git" => "tutorials/osm/",
-     "master_doc" => "index",
-     "project" => "Styling OpenStreetMap for OpenGeo Suite" },
+#  "tutorial-osm" => {
+#     "git" => "tutorials/osm/",
+#     "master_doc" => "index",
+#     "project" => "Styling OpenStreetMap for OpenGeo Suite" },
 
-  "tutorial-routing" => {
-     "git" => "tutorials/routing/",
-     "master_doc" => "index",
-     "project" => "Integrating OpenGeo Suite and pgRouting" },
+#  "tutorial-routing" => {
+#     "git" => "tutorials/routing/",
+#     "master_doc" => "index",
+#     "project" => "Integrating OpenGeo Suite and pgRouting" },
 
-  "geoext" => {
-     "git" => "workshops/geoext/",
-     "master_doc" => "index",
-     "project" => "Developing OGC Compliant Web Applications with GeoExt" },
+#  "geoext" => {
+#     "git" => "workshops/geoext/",
+#     "master_doc" => "index",
+#     "project" => "Developing OGC Compliant Web Applications with GeoExt" },
 
 #  "gxp" => {
 #     "git" => "workshops/gxp/",
 #     "master_doc" => "index",
 #     "project" => "Introduction to GXP" },
 
-  "geogig" => {
-      "git" => "workshops/geogig/",
-      "master_doc" => "index",
-      "project" => "GeoGig Workshop" },
+#  "geogig" => {
+#      "git" => "workshops/geogig/",
+#      "master_doc" => "index",
+#      "project" => "GeoGig Workshop" },
 
-  "frontpage" => {
-      "git" => "workshops/_frontpage/",
-      "project" => "Workshops" }
+#  "frontpage" => {
+#      "git" => "workshops/_frontpage/",
+#      "project" => "Workshops" }
 );
 
 if ( $ARGV[0] && $workshops{$ARGV[0]} ) {
@@ -126,6 +126,7 @@ for my $w (keys %workshops)
 
   # Search for the Sphinx configuration file location
   print STDERR "  Searching for $conffile...\n";
+  print "$srcpath";
   @confdirs = ();
   my $confdir = "";
   find(\&findconf, $srcpath);

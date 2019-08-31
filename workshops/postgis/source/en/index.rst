@@ -39,6 +39,7 @@ Workshop Modules
 
    welcome
    introduction
+   installation
    creating_db
    loading_data
    about_data

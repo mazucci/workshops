@@ -3,13 +3,23 @@
 Installation
 ============
 
-We will be using OpenGeo Suite (now known as Boundless Suite) as our software package, as it includes PostGIS/PostgreSQL in a single fast installation for Windows, OS X, and Linux. The Suite also includes GeoServer, OpenLayers, and a number of web visualization utilities.
+We will be using the PostGIS binary installers available from the official project site: https://postgis.net/install/. There are options for multiple platforms, but first an installation of the PostgreSQL database has to exists. For Windows, there is the EnterpriseDb PostgreSQL distributions: https://www.postgresql.org/download/windows/, an interactive installer that will provide the option of installing PostGIS in an installation dialog with "StackBuilder":
 
-.. note::
+   .. image:: ./screenshots/install_postgis.png
+     :class: inline
 
-  If you want to install just PostgreSQL, it can also be downloaded directly as source code or binary from the PostgreSQL project site: http://postgresql.org/download/. After installing PostgreSQL, use the "StackBuilder" utility to add the PostGIS extension.
+For OSX users it is possile to install PostGIS along with PostgreSQL using the Postgres app: http://postgresapp.com/. This is the easiest way to do the installation but you can also use the EnterpriseDb installer: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads or the homebrew installer if you are familiar with it by running the command: ``brew install postgis``.
 
-.. note:: 
+The following steps will guide you in the Postgres app installation:
+
+#. Download the dmg file: https://postgresapp.com/downloads.html.
+
+#. Drag the Postgres icon into your applications folder.
+
+  .. image:: ./installation/installosx1.png
+
+#. Double click the application and allow it to be opened:
+  .. image:: ./installation/installosx2.png
 
   The precise directions in this document are for Windows, but for OS X the installation is largely the same. Once the Suite is installed, the directions for both operating systems should be almost identical. 
 

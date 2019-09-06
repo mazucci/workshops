@@ -3,11 +3,16 @@
 Installation
 ============
 
-We will be using the PostGIS binary installers available from the official project site: https://postgis.net/install/. There are options for multiple platforms, but first an installation of the PostgreSQL database has to exists. For Windows, there is the EnterpriseDb PostgreSQL distributions: https://www.postgresql.org/download/windows/, an interactive installer that will provide the option of installing PostGIS in an installation dialog with "StackBuilder":
+PostGIS is an extension for the PostgreSQL database to deal with spatial data, so in order to use it we first need an installation of the database engine. The following instructions will guide you using the PostGIS binary installers available from the official project site: https://postgis.net/install/. There are options for multiple platforms.
+
+Windows
+-------
+For Windows, there is the EnterpriseDb PostgreSQL distributions: https://www.postgresql.org/download/windows/, an interactive installer that will provide the option of installing PostGIS in an installation dialog with "StackBuilder":
 
    .. image:: ./screenshots/install_postgis.png
      :class: inline
-
+Mac OS X
+--------
 For OSX users it is possile to install PostGIS along with PostgreSQL using the Postgres app: http://postgresapp.com/. This is the easiest way to do the installation but you can also use the EnterpriseDb installer: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads or the homebrew installer if you are familiar with it by running the command: ``brew install postgis``.
 
 The following steps will guide you in the Postgres app installation:
@@ -16,10 +21,27 @@ The following steps will guide you in the Postgres app installation:
 
 #. Drag the Postgres icon into your applications folder.
 
-  .. image:: ./installation/installosx1.png
+  .. image:: ./screenshots/installosx1.png
+  :class: inline
 
 #. Double click the application and allow it to be opened:
-  .. image:: ./installation/installosx2.png
+
+  .. image:: ./screenshots/installosx2.png
+  :class: inline
+
+#. Click initialize to start the process.
+
+   .. image:: ./screenshots/installosx3.png
+   :class: inline
+   
+#. If successful, you will see the databases available to connect to, this means that the database engine is up and running. By clicking the icons of the databases you will be prompted to a command line but for this workshop, the user interface pgAdmin 4 will be preferred.
+
+   .. image:: ./screenshots/installosx4.png
+   :class: inline
+   
+Install pgAdmin 4
+-----------------
+#. Go to: https://www.pgadmin.org/download/ to get pgAdmin 4 for your platform.
 
   The precise directions in this document are for Windows, but for OS X the installation is largely the same. Once the Suite is installed, the directions for both operating systems should be almost identical. 
 

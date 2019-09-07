@@ -41,19 +41,24 @@ The following steps will guide you in the Postgres app installation:
    
 Install pgAdmin 4
 -----------------
-#. Go to: https://www.pgadmin.org/download/ to get pgAdmin 4 for your platform.
+#. Go to: https://www.pgadmin.org/download/ to get pgAdmin 4 for your platform. Double click the installer and agree to the terms by clicking **Agree**.
 
-  The precise directions in this document are for Windows, but for OS X the installation is largely the same. Once the Suite is installed, the directions for both operating systems should be almost identical. 
-
-#. Find OpenGeo Suite installer for your platform. You can download the latest version through `Boundless Connect <http://connect.boundlessgeo.com>`_. OpenGeo Suite is available in the `Downloads <http://connect.boundlessgeo.com/Downloads>`_ area. The Windows installer will be named something like  :file:`opengeosuite-a.b.c.exe`, the Mac OS X installer like :file:`opengeosuite-a.b.c.dmg`). Double click to begin.
-
-#. Enjoy the warm welcome, courtesy of Boundless, then click **Next**.
-
-   .. image:: ./screenshots/install_welcome.png
+   .. image:: ./screenshots/installpgadmin1.png
      :class: inline
+     
+#. For **Mac OS X** drag the pgAdmin 4 icon to your applications folder.
 
+   .. image:: ./screenshots/installpgadmin2.png
+   :class: inline
+ 
+#. Open the installed application and allow it to run:
 
-#. OpenGeo Suite is licensed under the GNU GPL, which is reproduced on the licensing page. Click **I Agree**.
+   .. image:: ./screenshots/installpgadmin3.png
+   :class: inline
+   
+#. pgAdmin 4 is web-based so a window will open in your browser. the first time it will prompt for a master password to use. Set one, then enter it to see the servers.
+
+#. OpenGeo Suite is licensed under the GNU GPL, which is reproduced on the licensing page.
 
    .. image:: ./screenshots/install_license.png
      :class: inline

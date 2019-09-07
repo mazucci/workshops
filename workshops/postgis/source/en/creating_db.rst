@@ -10,7 +10,7 @@ PostgreSQL has a number of administrative front-ends.  The primary one is `psql 
 
 #. Find pgAdmin and start it up.
 
-   .. image:: ./screenshots/pgadmin_01.png
+   .. image:: ./screenshots/pgadminstart.png
      :class: inline
 
 #. If this is the first time you have run pgAdmin, you should have a server entry for **PostGIS (localhost:5432)** already configured in pgAdmin. Double click the entry, and enter anything you like at the password prompt to connect to the database.

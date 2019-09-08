@@ -25,8 +25,8 @@ QGIS is a free and open source geographic information system to create, edit, vi
      * - **Database**
        - ``nyc``
 
-   .. image:: ./screenshots/pgshapeloader_02.png
-     :class: inline
+   .. image:: ./screenshots/qgis_postgis02.png
+      :class: inline
 
 
 #. Next, open the *Add File* browser and navigate to the data directory, file:`\\postgis-workshop\\data`. Select the :file:`nyc_census_blocks.shp` file. 

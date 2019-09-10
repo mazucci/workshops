@@ -8,7 +8,12 @@ PgAdmin
 
 PostgreSQL has a number of administrative front-ends.  The primary one is `psql <http://www.postgresql.org/docs/current/static/app-psql.html>`_ a command-line tool for entering SQL queries.  Another popular PostgreSQL front-end is the free and open source graphical tool `pgAdmin <http://www.pgadmin.org/>`_. All queries done in pgAdmin can also be done on the command line with ``psql``. 
 
-#. Find pgAdmin and start it up.
+#. Find pgAdmin and start it up. If it is the first time you ar running it, it will ask you to set up a master password, this will allow you to log in to pgAdmin everytime.
+
+   .. image:: ./screenshots/pgadmin_00.png
+      :class: inline
+      
+#. Afterwards it will show you a list of servers. Click on **Servers** to view the active servers. 
 
    .. image:: ./screenshots/pgadminstart.png
      :class: inline

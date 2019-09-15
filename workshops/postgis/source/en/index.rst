@@ -13,7 +13,7 @@ Getting Started
   * :command:`PostgreSQL` database, along with :command:`PgAdmin` application, and command line tool :command:`psql`.
   * :command:`PostGIS` extension.
   
-  To comply with the required software, follow the `installation instructions <installation.html>`_ The boundless distributions of **Boundless Server** and **Boundless Desktop** include the software required above. You can download the latest distribution through `Boundless Connect <http://connect.boundlessgeo.com>`_. Boundless Server and Boundless Desktop are available in the `Downloads <http://connect.boundlessgeo.com/Downloads>`_ area.
+  To comply with the required software, follow the `installation instructions <installation>`_ The boundless distributions of **Boundless Server** and **Boundless Desktop** include the software required above. You can download the latest distribution through `Boundless Connect <http://connect.boundlessgeo.com>`_. Boundless Server and Boundless Desktop are available in the `Downloads <http://connect.boundlessgeo.com/Downloads>`_ area.
   
   For alternate distributions please see the `PostGIS Installation <http://postgis.net/install/>`__ page.
 

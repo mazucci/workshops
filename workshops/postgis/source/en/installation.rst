@@ -55,7 +55,7 @@ Install pgAdmin 4
 #. Open the installed application and allow it to run:
 
    .. image:: ./screenshots/installpgadmin3.png
-   :class: inline
+      :class: inline
    
 #. pgAdmin 4 is web-based so a window will open in your browser. the first time it will prompt for a master password to use. Set one, then enter it to see the servers.
 

@@ -15,7 +15,7 @@
     {{ breadcrumbdelim }} <a href="{{ link }}">{{ title|striptags }}</a>
   {%- endif %}
 </div> 
-{%- endmacro %} -->
+{%- endmacro %} 
 {%- macro rellinkbar() %}
 <ul id="relatedlinks" class="selfclear">
   {%- for rellink in rellinks %}
@@ -26,7 +26,7 @@
   {%- endfor %}
   {%- block relbaritems %}{% endblock %}
 </ul>
-{%- endmacro %}
+{%- endmacro %} -->
 
 {%- macro sidebar() %}
   {% if pagename == 'index' %}

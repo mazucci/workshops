@@ -11,6 +11,7 @@ For Windows, there is the EnterpriseDb PostgreSQL distributions: https://www.pos
 
    .. image:: ./screenshots/install_postgis.png
      :class: inline
+
 Mac OS X
 --------
 For OSX users it is possile to install PostGIS along with PostgreSQL using the Postgres app: http://postgresapp.com/. This is the easiest way to do the installation but you can also use the EnterpriseDb installer: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads or the homebrew installer if you are familiar with it by running the command: ``brew install postgis``.
@@ -22,22 +23,22 @@ The following steps will guide you in the Postgres app installation:
 #. Drag the Postgres icon into your applications folder.
 
   .. image:: ./screenshots/installosx1.png
-  :class: inline
+   :class: inline
 
 #. Double click the application and allow it to be opened:
 
   .. image:: ./screenshots/installosx2.png
-  :class: inline
+   :class: inline
 
 #. Click initialize to start the process.
 
    .. image:: ./screenshots/installosx3.png
-   :class: inline
+      :class: inline
    
 #. If successful, you will see the databases available to connect to, this means that the database engine is up and running. By clicking the icons of the databases you will be prompted to a command line but for this workshop, the user interface pgAdmin 4 will be preferred.
 
    .. image:: ./screenshots/installosx4.png
-   :class: inline
+      :class: inline
    
 Install pgAdmin 4
 -----------------
@@ -49,7 +50,7 @@ Install pgAdmin 4
 #. For **Mac OS X** drag the pgAdmin 4 icon to your applications folder.
 
    .. image:: ./screenshots/installpgadmin2.png
-   :class: inline
+      :class: inline
  
 #. Open the installed application and allow it to run:
 

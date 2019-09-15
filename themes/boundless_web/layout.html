@@ -1,6 +1,6 @@
 {%- set breadcrumbdelim = breadcrumbdelim is not defined and ' &raquo;' or breadcrumbdelim %}
 {%- set reldelim = reldelim is not defined and '|' or reldelim %}
-<!-- {%- macro breadcrumbs() %}
+ {%- macro breadcrumbs() %}
 <div id="breadcrumbs">
   {%- block rootrellink %}
   <a href="http://boundlessgeo.com/">Home</a>{{ breadcrumbdelim }}
@@ -26,7 +26,7 @@
   {%- endfor %}
   {%- block relbaritems %}{% endblock %}
 </ul>
-{%- endmacro %} -->
+{%- endmacro %}
 
 {%- macro sidebar() %}
   {% if pagename == 'index' %}
@@ -70,11 +70,11 @@
         </ul>
         </div>
       {%- endif %}
-      {%- if customsidebar %}
+      <!-- {%- if customsidebar %}
       {{ rendertemplate(customsidebar) }}
       {%- endif %}
       {%- block sidebarsearch %}{%- endblock %}
-    {%- endif %}
+    {%- endif %} -->
   {%- endif %}
 
    <h4>License</h4>

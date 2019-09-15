@@ -3,17 +3,6 @@
 Welcome
 *******
 
-About Boundless
-===============
-
-`Boundless <http://boundlessgeo.com/>`_ is bringing the best practices of open source software to governments and other organizations around the world.
-
-* We provide enterprises with supported, tested, and integrated open source solutions to help open government.
-* We support open source communities by employing key developers for PostGIS, GeoServer, GeoWebCache, GeoExt, and OpenLayers.
-* We have a ten-year history of providing successful consulting services and products to clients like MassGIS, TriMet, Landgate, Google, The Work Bank, and the Open Geospatial Consortium.
-* We believe open and accessible information empowers people to effect real change. Our goal is to make geospatial information more open: publicly available, accessible on compelling platforms that people want to use.
-* We strive to build software that meets and exceeds the desires of clients, because our market success proves the value of our work.
-
 Workshop Conventions
 ====================
 

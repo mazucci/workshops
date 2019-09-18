@@ -142,7 +142,8 @@ Data you receive from local agencies—such as New York City—will usually be i
 
 
 Things to Try: View data using QGIS
--You can use QGIS for quickly looking at data too. You can view a number of data formats including flat shapefiles and a PostGIS database. Its graphical interface allows for easy exploration of your data, as well as simple testing and fast styling. 
+
+You can use QGIS for quickly looking at data too. You can view a number of data formats including flat shapefiles and a PostGIS database. Its graphical interface allows for easy exploration of your data, as well as simple testing and fast styling. 
 
 To view the imported data, click on the connection in the left panel and **Double-click** on the tables created to add them to the map.
 

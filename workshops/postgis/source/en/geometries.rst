@@ -44,8 +44,8 @@ Let's have a look at the ``geometry_columns`` table in our database.  Paste this
 
 .. image:: ./geometries/start08.png
 
-* ``f_table_catalog``, ``f_table_schema``, and ``f_table_name`` provide the fully qualified name of the feature table containing a given geometry.  Because PostgreSQL doesn't make use of catalogs, ``f_table_catalog`` will tend to be empty.
-* ``f_geometry_column`` is the name of the column that geometry containing column -- for feature tables with multiple geometry columns, there will be one record for each.
+* ``f_table_catalog``, ``f_table_schema``, and ``f_table_name`` provide the fully qualified name of the feature table containing a given geometry.
+* ``f_geometry_column`` is the name of the column that contains a geometry -- for feature tables with multiple geometry columns, there will be one record for each.
 * ``coord_dimension`` and ``srid`` define the the dimension of the geometry (2-, 3- or 4-dimensional) and the Spatial Reference system identifier that refers to the ``spatial_ref_sys`` table respectively.
 * The ``type`` column defines the type of geometry as described below; we've seen Point and Linestring types so far.
 

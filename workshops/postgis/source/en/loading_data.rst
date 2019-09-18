@@ -31,13 +31,13 @@ QGIS is a free and open source geographic information system to create, edit, vi
 
 #. Next, open the *DB Manager* browser from the menu **Database > DB Manager...** and select the postgis connection added in the previous step. 
 
-   .. image:: ./screenshots/qgis_postgis03.png
+   .. image:: ./screenshots/qgis_postgis_03.png
       :class: inline
       
 #. Then **Click** on *Import Layer/File* and navigate to the folder from the data bundle:`\\postgis-workshop-2018\\data`. Select the :file:`nyc_census_blocks.shp` file and tick the checkboxes next to **Create single-part geometries instead of multi-part** and **Create spatial index**. Make sure the SRID value for the file is set to **26918** and the schema is set to public. Note that the primary key, geometry column, source SRID, target SRID and encoding are already filled in using the shapefile, but you can optionally change them (**Don't!** There are steps later in the workshop that expect the default names.)
 
 
-   .. image:: ./screenshots/qgis_postgis04.png
+   .. image:: ./screenshots/qgis_postgis_04.png
       :class: inline
  
 #. Fill in the details for the *Configuration* section.

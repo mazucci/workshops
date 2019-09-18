@@ -60,7 +60,7 @@ Creating a Database
 
      CREATE EXTENSION postgis;
            
-#. Click the **Play** button in the toolbar (or press **F5**) to "Execute the query." 
+#. Click the **Execute** button in the toolbar (or press **F5**) to "Execute the query." 
 
 #. Now confirm that PostGIS is installed by running a PostGIS function:
 
@@ -74,4 +74,4 @@ You have successfully created a PostGIS spatial database!!
 Function List
 -------------
 
-`PostGIS_Full_Version <http://postgis.net/docs/manual-2.1/PostGIS_Full_Version.html>`_: Reports full PostGIS version and build configuration info.
+`PostGIS_Full_Version <http://postgis.net/docs/manual-2.5/PostGIS_Full_Version.html>`_: Reports full PostGIS version and build configuration info.

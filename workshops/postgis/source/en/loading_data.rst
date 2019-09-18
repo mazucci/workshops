@@ -54,22 +54,18 @@ QGIS is a free and open source geographic information system to create, edit, vi
    .. image:: ./screenshots/qgis_postgis_04.png
       :class: inline
  
-#. Click the **Options** button to review the loading options. The loader will use the fast "COPY" mode and create a spatial index by default after loading the data.
+#. Click the **Ok** button to create the table. It may take a few minutes to load, but this is the largest file in our test set.
 
    .. image:: ./screenshots/pgshapeloader_03.png
      :class: inline
 
-#. Finally, click the **Import** button and watch the import process. It may take a few minutes to load, but this is the largest file in our test set.
-
-#. Repeat the import process for the remaining shapefiles in the data directory. You can load multiple files in one import by adding multiple files before pressing the **Import** button:
+#. Repeat the import process for the remaining shapefiles in the data directory:
 
    * ``nyc_streets.shp``
    * ``nyc_neighborhoods.shp``
    * ``nyc_subway_stations.shp``
    * ``nyc_homicides.shp``
-   
-   .. tip:: Use the :guilabel:`Rm` checkbox to remove ``nyc_census_blocks`` since it has already been imported.
- 
+    
 #. When all the files are loaded, click the "Refresh" button in pgAdmin to update the tree view. You should see your four tables show up in the **Databases > nyc > Schemas > public > Tables** section of the tree.
 
    .. image:: ./screenshots/refresh.png
@@ -90,7 +86,7 @@ Optional files include:
 
 * ``.prj``—projection format; the coordinate system and projection information, a plain text file describing the projection using well-known text format
 
-The pgShapeLoader makes shape data usable in PostGIS by converting it from binary data into a series of SQL commands that are then run in the database to load the data. 
+The Db Manager importer makes shape data usable in PostGIS by converting it from binary data into a series of SQL commands that are then run in the database to load the data. 
 
 
 SRID 26918? What's with that?

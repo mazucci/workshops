@@ -56,9 +56,6 @@ QGIS is a free and open source geographic information system to create, edit, vi
  
 #. Click the **Ok** button to create the table. It may take a few minutes to load, but this is the largest file in our test set.
 
-   .. image:: ./screenshots/pgshapeloader_03.png
-     :class: inline
-
 #. Repeat the import process for the remaining shapefiles in the data directory:
 
    * ``nyc_streets.shp``

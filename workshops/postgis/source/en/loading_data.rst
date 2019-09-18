@@ -12,7 +12,7 @@ QGIS is a free and open source geographic information system to create, edit, vi
    .. image:: ./screenshots/qgis_postgis.png
      :class: inline
 
-#. Fill in the connection details for the *Connection Information* section and click on the **OK** button. The loader will test the connection and report back in the log window.
+#. Fill in the connection details for the *Authentication* section and click on the **Test Connection** button. This will test the connection and report back if it works or not. If it is working, click the **Ok** button to create the connection.
 
    .. list-table::
 
@@ -29,12 +29,16 @@ QGIS is a free and open source geographic information system to create, edit, vi
       :class: inline
 
 
-#. Next, open the *Add File* browser and navigate to the data directory, file:`\\postgis-workshop\\data`. Select the :file:`nyc_census_blocks.shp` file. 
+#. Next, open the *DB Manager* browser from the menu **Database > DB Manager...** and select the postgis connection added in the previous step. 
 
-#. Change the SRID value for the file to **26918**. Note that the schema, table and column name are already filled in using the shapefile, but you can optionally change them (**Don't!** There are steps later in the workshop that expect the default names.) Click out of the fields after you are done editing, to ensure that the changes were entered.
+   .. image:: ./screenshots/qgis_postgis03.png
+      :class: inline
+      
+#. Then **Click** on *Import Layer/File* and navigate to the folder from the data bundle:`\\postgis-workshop-2018\\data`. Select the :file:`nyc_census_blocks.shp` file and tick the checkboxes next to **Create single-part geometries instead of multi-part** and **Create spatial index**. Make sure the SRID value for the file is set to **26918** and the schema is set to public. Note that the primary key, geometry column, source SRID, target SRID and encoding are already filled in using the shapefile, but you can optionally change them (**Don't!** There are steps later in the workshop that expect the default names.)
 
-   .. image:: ./screenshots/pgshapeloader_01a.png
-     :class: inline
+
+   .. image:: ./screenshots/qgis_postgis04.png
+      :class: inline
  
 #. Fill in the details for the *Configuration* section.
 

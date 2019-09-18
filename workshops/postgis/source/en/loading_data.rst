@@ -3,7 +3,7 @@
 Loading spatial data
 ====================
 
-Supported by a wide variety of libraries and applications, PostGIS provides many options for loading data.  This section will focus on the basics -- loading shapefiles using QGIS DB Manager.
+Supported by a wide variety of libraries and applications, PostGIS provides many options for loading data. This section will focus on the basics -- loading shapefiles using QGIS DB Manager.
 
 QGIS is a free and open source geographic information system to create, edit, visualize, analyse and publish geospatial information. It's available for multiple platforms: Windows, Mac, Linux, BSD. To get it, download the long term release (LTR) from the project website: https://qgis.org/en/site/forusers/download.html and follow the installation process. This tutorial was made using the version 3.4 (Madeira).
 
@@ -142,13 +142,13 @@ Data you receive from local agencies—such as New York City—will usually be i
 
 
 Things to Try: View data using QGIS
------------------------------------
+-You can use QGIS for quickly looking at data too. You can view a number of data formats including flat shapefiles and a PostGIS database. Its graphical interface allows for easy exploration of your data, as well as simple testing and fast styling. 
 
-`QGIS <http://qgis.org>`_, is a desktop GIS viewer/editor for quickly looking at data. You can view a number of data formats including flat shapefiles and a PostGIS database. Its graphical interface allows for easy exploration of your data, as well as simple testing and fast styling. 
+To view the imported data, click on the connection in the left panel and **Double-click** on the tables created to add them to the map.
 
-Try using this software to connect your PostGIS database.  The application can be downloaded from http://qgis.org
+.. image:: ./screenshots/qgis_postgis_05.png
 
 .. rubric:: Footnotes
 
-.. [#PostGIS_Install] "Chapter 2.5. Installation" PostGIS Documentation <http://postgis.net/docs/manual-2.1/postgis_installation.html#PGInstall>
+.. [#PostGIS_Install] "Chapter 2.5. Installation" PostGIS Documentation <http://postgis.net/docs/manual-2.5/postgis_installation.html#PGInstall>
 

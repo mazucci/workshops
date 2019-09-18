@@ -23,9 +23,9 @@ then enter the following query in to the query window
 
   SELECT name FROM nyc_neighborhoods;
   
-and click the **Execute Query** button (the green triangle).
+and click the **Execute Query** button (again the thunder).
   
-.. image:: ./screenshots/pgadmin_08.png  
+.. image:: ./screenshots/pgadmin_05.png  
 
 The query will run for a few (milli)seconds and return the 129 results.
 

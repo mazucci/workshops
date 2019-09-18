@@ -5,7 +5,7 @@ Loading spatial data
 
 Supported by a wide variety of libraries and applications, PostGIS provides many options for loading data. This section will focus on the basics -- loading shapefiles using QGIS DB Manager.
 
-QGIS is a free and open source geographic information system to create, edit, visualize, analyse and publish geospatial information. It's available for multiple platforms: Windows, Mac, Linux, BSD. To get it, download the long term release (LTR) from the project website: https://qgis.org/en/site/forusers/download.html and follow the installation process. This tutorial was made using the version 3.4 (Madeira).
+`QGIS <https://qgis.org>`_ is a free and open source geographic information system to create, edit, visualize, analyse and publish geospatial information. It's available for multiple platforms: Windows, Mac, Linux, BSD. To get it, download the long term release (LTR) from the project website: https://qgis.org/en/site/forusers/download.html and follow the installation process. This tutorial was made using the version 3.4 (Madeira).
 
 #. First, launch the QGIS software and navigate to the browser panel where you will find the PostGIS icon. **Right click** on it and select **New Connection...**.
 
@@ -152,5 +152,5 @@ To view the imported data, click on the connection in the left panel and **Doubl
 
 .. rubric:: Footnotes
 
-.. [#PostGIS_Install] "Chapter 2.5. Installation" PostGIS Documentation <http://postgis.net/docs/manual-2.5/postgis_installation.html#PGInstall>
+.. [#PostGIS_Install] "Chapter 2.5. Installation" `PostGIS Documentation <http://postgis.net/docs/manual-2.5/postgis_installation.html#PGInstall>`_
 

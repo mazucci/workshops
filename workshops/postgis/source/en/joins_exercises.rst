@@ -71,15 +71,15 @@ Exercises
 
             name        | boroname
     --------------------+-----------
-     Chinatown          |	Manhattan
-     East Harlem        |	Manhattan
+     Chinatown          |Manhattan
+     East Harlem        |Manhattan
      Financial District	| Manhattan
      Gramercy           |	Manhattan
      Greenwich Village 	| Manhattan
      Hunts Point        |	The Bronx
      Little Italy       |	Manhattan
      Midtown            | Manhattan
-     Mott Haven	        | Th e Bronx
+     Mott Haven	        | The Bronx
      Murray Hill	       | Manhattan
      Parkchester	       | The Bronx
      Soundview	         | The Bronx

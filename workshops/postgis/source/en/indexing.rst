@@ -7,7 +7,7 @@ Recall that spatial index is one of the three key features of a spatial database
 
 Spatial indices are one of the greatest assets of PostGIS.  In the previous example building spatial joins requires comparing whole tables with each other. This can get very costly: joining two tables of 10,000 records each without indexes would require 100,000,000 comparisons; with indexes the cost could be as low as 20,000 comparisons.
 
-When we loaded the ``nyc_census_blocks`` table, the pgShapeLoader automatically created a spatial index called ``nyc_census_blocks_geom_idx``
+When we loaded the ``nyc_census_blocks`` table, the QGIS DB Manager was set to automatically create a spatial index called ``sidx_nyc_census_blocks_geom``
 
 To demonstrate how important indexes are for performance, let's search ``nyc_census_blocks`` **without** our spatial index. 
 
@@ -15,11 +15,11 @@ Our first step is to remove the index.
 
 .. code-block:: sql
 
-  DROP INDEX nyc_census_blocks_geom_idx;
+  DROP INDEX sidx_nyc_census_blocks_geom;
   
 .. note::
 
-   The ``DROP INDEX`` statement drops an existing index from the database system. For more information, see the PostgreSQL `documentation <http://www.postgresql.org/docs/7.4/interactive/sql-dropindex.html>`_.
+   The ``DROP INDEX`` statement drops an existing index from the database system. For more information, see the PostgreSQL `documentation <https://www.postgresql.org/docs/11/sql-dropindex.html>`_.
    
 Now, watch the "Timing" meter at the lower right-hand corner of the pgAdmin query window and run the following. Our query searches through every single census block in order to identify the Broad Street entry.
 
@@ -37,19 +37,19 @@ Now, watch the "Timing" meter at the lower right-hand corner of the pgAdmin quer
   -----------------
    360610007001009
   
-The ``nyc_census_blocks`` table is very small (only a few thousand records) so even without an index, the query only takes **55 ms** on my test computer.
+The ``nyc_census_blocks`` table is very small (only a few thousand records) so even without an index, the query only takes **103 ms** on my test computer.
 
 Now add the spatial index back in and run the query again. 
 
 .. code-block:: sql
 
-  CREATE INDEX nyc_census_blocks_geom_idx 
+  CREATE INDEX sidx_nyc_census_blocks_geom 
     ON nyc_census_blocks 
     USING GIST (geom);
 
 .. note:: The ``USING GIST`` clause tells PostgreSQL to use the generic index structure (GIST) when building the index.  If you receive an error that looks like ``ERROR: index row requires 11340 bytes, maximum size is 8191`` when creating your index, you have likely neglected to add the ``USING GIST`` clause.
 
-On my test computer the time drops to **9 ms**. The larger your table, the larger the relative speed improvement of an indexed query will be.
+On my test computer the time drops to **66 ms**. The larger your table, the larger the relative speed improvement of an indexed query will be.
 
 How Spatial Indexes Work
 ------------------------

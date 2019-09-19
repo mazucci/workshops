@@ -72,7 +72,7 @@ Both PostGIS and Oracle Spatial share the same "R-Tree" [#RTree]_ spatial index 
 Index-Only Queries
 ------------------
 
-Most of the commonly used functions in PostGIS (:command:`ST_Contains`, :command:`ST_Intersects`, :command:`ST_DWithin`, etc) include an index filter automatically. But some functions (e.g., :command:`ST_Relate`) do not include and index filter.
+Most of the commonly used functions in PostGIS (:command:`ST_Contains`, :command:`ST_Intersects`, :command:`ST_DWithin`, etc) include an index filter automatically. But some functions (e.g., :command:`ST_Relate`) do not include an index filter.
 
 To do a bounding-box search using the index (and no filtering), make use of the :command:`&&` operator. For geometries, the :command:`&&` operator means "bounding boxes overlap or touch" in the same way that for number the :command:`=` operator means "values are the same".
 
@@ -113,7 +113,7 @@ The PostgreSQL query planner intelligently chooses when to use or not to use ind
 
 In order to figure out what situation it is dealing with (reading a small part of the table versus reading a large portion of the table), PostgreSQL keeps statistics about the distribution of data in each indexed table column.  By default, PostgreSQL gathers statistics on a regular basis. However, if you dramatically change the make-up of your table within a short period of time, the statistics will not be up-to-date.
 
-To ensure your statistics match your table contents, it is wise the to run the ``ANALYZE`` command after bulk data loads and deletes in your tables. This force the statistics system to gather data for all your indexed columns.
+To ensure your statistics match your table contents, it is wise to run the ``ANALYZE`` command after bulk data loads and deletes in your tables. This force the statistics system to gather data for all your indexed columns.
 
 The ``ANALYZE`` command asks PostgreSQL to traverse the table and update its internal statistics used for query plan estimation (query plan analysis will be discussed later). 
 
@@ -139,11 +139,11 @@ Vacuuming and analyzing the database can be performed separately as needed.  Iss
 Function List
 -------------
 
-`geometry_a && geometry_b <http://postgis.net/docs/manual-2.1/ST_Geometry_Overlap.html>`_: Returns TRUE if A's bounding box overlaps B's.
+`geometry_a && geometry_b <https://postgis.net/docs/manual-1.5/ST_Geometry_Overlap.html>`_: Returns TRUE if A's bounding box overlaps B's.
 
-`geometry_a = geometry_b <http://postgis.net/docs/manual-2.1/ST_Geometry_EQ.html>`_: Returns TRUE if A's bounding box is the same as B's.
+`geometry_a = geometry_b <https://postgis.net/docs/ST_Geometry_EQ.html>`_: Returns TRUE if A's bounding box is the same as B's.
 
-`ST_Intersects(geometry_a, geometry_b) <http://postgis.net/docs/manual-2.1/ST_Intersects.html>`_: Returns TRUE if the Geometries/Geography "spatially intersect" - (share any portion of space) and FALSE if they don't (they are Disjoint). 
+`ST_Intersects(geometry_a, geometry_b) <https://postgis.net/docs/ST_Intersects.html>`_: Returns TRUE if the Geometries/Geography "spatially intersect" - (share any portion of space) and FALSE if they don't (they are Disjoint). 
 
 .. rubric:: Footnotes
 

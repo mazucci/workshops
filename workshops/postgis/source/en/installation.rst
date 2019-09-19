@@ -57,7 +57,7 @@ Install pgAdmin 4
    .. image:: ./screenshots/installpgadmin3.png
       :class: inline
    
-#. pgAdmin 4 is web-based so a window will open in your browser. the first time it will prompt for a master password to use. Set one, then enter it to see the servers.
+#. pgAdmin 4 is web-based so a window will open in your browser. The first time it will prompt for a master password to use, set one, then enter it to see the servers.
 
 #. OpenGeo Suite is licensed under the GNU GPL, which is reproduced on the licensing page.
 

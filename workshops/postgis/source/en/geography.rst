@@ -153,7 +153,7 @@ There are only a small number of native functions for the geography type:
 Creating a Geography Table
 --------------------------
  
-The SQL for creating a new table with a geography column is much like that for creating a geometry table. However, geography includes the ability to specify the object type directly at the time of table creation. For example:
+The SQL for creating a new table with a geography column is much like that for creating a geometry table. For example:
 
 .. code-block:: sql
 

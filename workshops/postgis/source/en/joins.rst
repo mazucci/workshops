@@ -258,8 +258,8 @@ Now we can join the table of subway lines onto our original query.
      M     |      56.5 |       6.4 |     174196
      E     |      66.8 |       4.7 |      90958
      R     |      58.5 |       4.0 |     196999
-     N     |      59.7 |       3.5 |     147792
      7     |      35.7 |       3.5 |     102401
+     N     |      59.7 |       3.5 |     147792
 
 
 As before, the joins create a virtual table of all the possible combinations available within the constraints of the ``JOIN ON`` restrictions, and those rows are then fed into a ``GROUP`` summary. The spatial magic is in the ``ST_DWithin`` function, that ensures only census blocks close to the appropriate subway stations are included in the calculation.

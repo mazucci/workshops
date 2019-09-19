@@ -79,7 +79,7 @@ Exercises
      Hunts Point        |	The Bronx
      Little Italy       |	Manhattan
      Midtown            | Manhattan
-     Mott Haven	        | The Bronx
+     Mott Haven	        | Th e Bronx
      Murray Hill	       | Manhattan
      Parkchester	       | The Bronx
      Soundview	         | The Bronx

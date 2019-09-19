@@ -60,7 +60,7 @@ Using the ``geography`` instead of ``geometry`` type, let's try again to measure
 
 ::
 
-  9124665.26917268
+  9124665.27317673
 
 A big number! All return values from ``geography`` calculations are in meters, so our answer is 9124km. 
 
@@ -81,7 +81,7 @@ Working with geographic coordinates on a Cartesian plane (the purple line) yield
 
 ::
 
-  502454.906643729
+  502454.90667289
   
 So the closest approach to Iceland (as measured from its international airport) on the LAX-CDG route is a relatively small 502km.
   
@@ -104,7 +104,7 @@ The Cartesian approach to handling geographic coordinates breaks down entirely f
 
    geometry_distance | geography_distance 
   -------------------+--------------------
-    258.146005837336 |   8833954.76996256
+    258.146005837336 |   8833954.77277118
 
 
 Using Geography
@@ -125,7 +125,7 @@ Building a spatial index on a geography table is exactly the same as for geometr
 
 .. code-block:: sql
 
-  CREATE INDEX nyc_subway_stations_geog_gix 
+  CREATE INDEX sidx_nyc_subway_stations_geog
   ON nyc_subway_stations_geog USING GIST (geog);
 
 The difference is under the covers: the geography index will correctly handle queries that cover the poles or the international date-line, while the geometry one will not.
@@ -200,7 +200,7 @@ The :command:`ST_X(point)` function only supports the geometry type. How can we 
  ------+-----------
   LAX  | -118.4079 
   CDG  |    2.5559
-  KEF  |  -21.8628
+  KEF  |  -22.6056
 
 By appending ``::geometry`` to our geography value, we convert the object to a geometry with an SRID of 4326. From there we can use as many geometry functions as strike our fancy. But, remember -- now that our object is a geometry, the coordinates will be interpretted as Cartesian coordinates, not spherical ones.
  
@@ -222,13 +222,13 @@ The conclusion?
 Function List
 -------------
 
-`ST_Distance(geometry, geometry) <http://postgis.net/docs/manual-2.1/ST_Distance.html>`_: For geometry type Returns the 2-dimensional Cartesian minimum distance (based on spatial ref) between two geometries in projected units. For geography type defaults to return spheroidal minimum distance between two geographies in meters.
+`ST_Distance(geometry, geometry) <http://postgis.net/docs/ST_Distance.html>`_: For geometry type Returns the 2-dimensional Cartesian minimum distance (based on spatial ref) between two geometries in projected units. For geography type defaults to return spheroidal minimum distance between two geographies in meters.
 
-`ST_GeographyFromText(text) <http://postgis.net/docs/manual-2.1/ST_GeographyFromText.html>`_: Returns a specified geography value from Well-Known Text representation or extended (WKT).
+`ST_GeographyFromText(text) <http://postgis.net/docs/ST_GeographyFromText.html>`_: Returns a specified geography value from Well-Known Text representation or extended (WKT).
 
-`ST_Transform(geometry, srid) <http://postgis.net/docs/manual-2.1/ST_Transform.html>`_: Returns a new geometry with its coordinates transformed to the SRID referenced by the integer parameter.
+`ST_Transform(geometry, srid) <http://postgis.net/docs/ST_Transform.html>`_: Returns a new geometry with its coordinates transformed to the SRID referenced by the integer parameter.
 
-`ST_X(point) <http://postgis.net/docs/manual-2.1/ST_X.html>`_: Returns the X coordinate of the point, or NULL if not available. Input must be a point.
+`ST_X(point) <http://postgis.net/docs/ST_X.html>`_: Returns the X coordinate of the point, or NULL if not available. Input must be a point.
 
 
 .. rubric:: Footnotes

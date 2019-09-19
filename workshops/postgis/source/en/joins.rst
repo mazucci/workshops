@@ -148,14 +148,14 @@ First, note that the contents of the ``nyc_subway_stations`` table ``routes`` fi
 
 ::
 
- A,C,G
- 4,5
- D,F,N,Q
- 5
- E,F
- E,J,Z
- R,W
-
+  4,5
+  [null]
+  N,Q,R,W
+  J
+  B,M,Q,R
+  D,F,N,Q
+  J,M
+  
 .. note::
 
    The ``DISTINCT`` keyword eliminates duplicate rows from the result.  Without the ``DISTINCT`` keyword, the query above identifies 491 results instead of 73.
@@ -170,15 +170,15 @@ So to find the A-train, we will want any row in ``routes`` that has an 'A' in it
 
 ::
 
-  A,B,C
   A,C
-  A
-  A,C,G
-  A,C,E,L
-  A,S
-  A,C,F
   A,B,C,D
+  A,C,E,L
+  A,C,F
+  A,B,C
+  A,S
   A,C,E
+  A,C,G
+  A
 
 Let's summarize the racial make-up of within 200 meters of the A-train line.
 

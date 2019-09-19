@@ -74,18 +74,18 @@ Exercises
      Chinatown          | Manhattan
      East Harlem        | Manhattan
      Financial District	| Manhattan
-     Gramercy           |	Manhattan
+     Gramercy           |Manhattan
      Greenwich Village 	| Manhattan
-     Hunts Point        |	The Bronx
-     Little Italy       |	Manhattan
+     Hunts Point        |The Bronx
+     Little Italy       |Manhattan
      Midtown            | Manhattan
      Mott Haven	        | The Bronx
-     Murray Hill   | Manhattan
-     Parkchester   | The Bronx
-     Soundview     | The Bronx
-     South Bronx       | The Bronx
-     Upper East Side   | Manhattan
-     Yorkville         | Manhattan
+     Murray Hill        | Manhattan
+     Parkchester        | The Bronx
+     Soundview          | The Bronx
+     South Bronx        | The Bronx
+     Upper East Side    | Manhattan
+     Yorkville          | Manhattan
 
   .. note::
 

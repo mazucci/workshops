@@ -13,7 +13,7 @@ Getting Started
   * :command:`PostgreSQL` database, along with :command:`PgAdmin` application, and command line tool :command:`psql`.
   * :command:`PostGIS` extension.
   
-  To comply with the required software, follow the :ref:`installation` of this workshop, these will guide you while installing PostGIS requirements for different platforms according to the official versions available at the time of making this tutorial.
+  To comply with the required software, follow the :ref:`installation` instruction of this workshop, these will guide you while installing PostGIS requirements for different platforms according to the official versions available at the time of making this tutorial.
   
 Workshop Materials
 ------------------

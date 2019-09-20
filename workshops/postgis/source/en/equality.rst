@@ -43,7 +43,7 @@ Exact equality is determined by comparing two geometries, vertex by vertex, in o
       THEN 'Exactly Equal' ELSE 'Not Exactly Equal' end
     FROM polygons as a, polygons as b;
 
-  ::
+::
 
        name    |   name    |       case        
     -----------+-----------+-------------------
@@ -86,7 +86,7 @@ As we saw above, exact equality does not take into account the spatial nature of
       THEN 'Spatially Equal' ELSE 'Not Equal' end
     FROM polygons as a, polygons as b;
 
-  ::
+::
 
        name    |   name    |      case       
     -----------+-----------+-----------------
@@ -129,7 +129,7 @@ Exact equality requires, in the worst case, comparison of each and every vertex 
       THEN 'Equal Bounds' ELSE 'Non-equal Bounds' end
     FROM polygons as a, polygons as b;
 
-  ::
+::
 
        name    |   name    |       case       
     -----------+-----------+------------------

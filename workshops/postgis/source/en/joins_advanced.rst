@@ -24,7 +24,7 @@ Loading nyc_census_sociodata.sql
 
 #. Open the SQL query window in PgAdmin
 #. Select **File->Open** from the menu and browse to the ``nyc_census_sociodata.sql`` file
-#. (*Alternative*) In case your postgres user does not have access to access the files in the directory you can use a text editor to open the ``nyc_census_sociodata.sql`` file and copy its content into the pgAdmin query window.
+#. (*Alternative*) In case your postgres user does not have access to access the files in the directory you can use a text editor to open the ``nyc_census_sociodata.sql`` file and copy its content into the pgAdmin query window
 #. Press the "Run Query" button
 #. If you press the "Refresh" button in pgAdmin, the list of tables should now include at ``nyc_census_sociodata`` table
  

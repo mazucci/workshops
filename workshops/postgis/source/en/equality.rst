@@ -45,7 +45,6 @@ Exact equality is determined by comparing two geometries, vertex by vertex, in o
 
   ::
 
-
        name    |   name    |       case        
     -----------+-----------+-------------------
      Polygon 1 | Polygon 1 | Exactly Equal
@@ -87,7 +86,35 @@ As we saw above, exact equality does not take into account the spatial nature of
       THEN 'Spatially Equal' ELSE 'Not Equal' end
     FROM polygons as a, polygons as b;
 
-.. image:: ./equality/start15.png
+  ::
+
+       name    |   name    |      case       
+    -----------+-----------+-----------------
+     Polygon 1 | Polygon 1 | Spatially Equal
+     Polygon 1 | Polygon 2 | Spatially Equal
+     Polygon 1 | Polygon 3 | Spatially Equal
+     Polygon 1 | Polygon 4 | Spatially Equal
+     Polygon 1 | Polygon 5 | Not Equal
+     Polygon 2 | Polygon 1 | Spatially Equal
+     Polygon 2 | Polygon 2 | Spatially Equal
+     Polygon 2 | Polygon 3 | Spatially Equal
+     Polygon 2 | Polygon 4 | Spatially Equal
+     Polygon 2 | Polygon 5 | Not Equal
+     Polygon 3 | Polygon 1 | Spatially Equal
+     Polygon 3 | Polygon 2 | Spatially Equal
+     Polygon 3 | Polygon 3 | Spatially Equal
+     Polygon 3 | Polygon 4 | Spatially Equal
+     Polygon 3 | Polygon 5 | Not Equal
+     Polygon 4 | Polygon 1 | Spatially Equal
+     Polygon 4 | Polygon 2 | Spatially Equal
+     Polygon 4 | Polygon 3 | Spatially Equal
+     Polygon 4 | Polygon 4 | Spatially Equal
+     Polygon 4 | Polygon 5 | Not Equal
+     Polygon 5 | Polygon 1 | Not Equal
+     Polygon 5 | Polygon 2 | Not Equal
+     Polygon 5 | Polygon 3 | Not Equal
+     Polygon 5 | Polygon 4 | Not Equal
+     Polygon 5 | Polygon 5 | Spatially Equal
 
 These results are more in line with our intuitive understanding of equality.  Polygons 1 through 4 are considered equal, since they enclose the same area.  Note that neither the direction of the polygon is drawn, the starting point for defining the polygon, nor the number of points used are important here.  What is important is that the polygons contain the same space.  
 
@@ -102,7 +129,35 @@ Exact equality requires, in the worst case, comparison of each and every vertex 
       THEN 'Equal Bounds' ELSE 'Non-equal Bounds' end
     FROM polygons as a, polygons as b;
 
-.. image:: ./equality/start17.png
+  ::
+
+       name    |   name    |       case       
+    -----------+-----------+------------------
+     Polygon 1 | Polygon 1 | Equal Bounds
+     Polygon 1 | Polygon 2 | Non-equal Bounds
+     Polygon 1 | Polygon 3 | Non-equal Bounds
+     Polygon 1 | Polygon 4 | Non-equal Bounds
+     Polygon 1 | Polygon 5 | Non-equal Bounds
+     Polygon 2 | Polygon 1 | Non-equal Bounds
+     Polygon 2 | Polygon 2 | Equal Bounds
+     Polygon 2 | Polygon 3 | Non-equal Bounds
+     Polygon 2 | Polygon 4 | Non-equal Bounds
+     Polygon 2 | Polygon 5 | Non-equal Bounds
+     Polygon 3 | Polygon 1 | Non-equal Bounds
+     Polygon 3 | Polygon 2 | Non-equal Bounds
+     Polygon 3 | Polygon 3 | Equal Bounds
+     Polygon 3 | Polygon 4 | Non-equal Bounds
+     Polygon 3 | Polygon 5 | Non-equal Bounds
+     Polygon 4 | Polygon 1 | Non-equal Bounds
+     Polygon 4 | Polygon 2 | Non-equal Bounds
+     Polygon 4 | Polygon 3 | Non-equal Bounds
+     Polygon 4 | Polygon 4 | Equal Bounds
+     Polygon 4 | Polygon 5 | Non-equal Bounds
+     Polygon 5 | Polygon 1 | Non-equal Bounds
+     Polygon 5 | Polygon 2 | Non-equal Bounds
+     Polygon 5 | Polygon 3 | Non-equal Bounds
+     Polygon 5 | Polygon 4 | Non-equal Bounds
+     Polygon 5 | Polygon 5 | Equal Bounds
 
 As you can see, all of our spatially equal geometries also have equal bounds.  Unfortunately, Polygon 5 is also returned as equal under this test, because it shares the same bounding box as the other geometries.  Why is this useful, then?  Although this will be covered in detail later, the shot answer is that this enables the use of spatial indexing that can quickly reduce huge comparison sets into more manageable blocks when joining or filtering data.
 

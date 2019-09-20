@@ -57,7 +57,7 @@ Create the new table using the :command:`ST_Union` aggregate:
    GROUP BY tractid;
      
    -- Index the tractid
-   CREATE INDEX nyc_census_tract_geoms_tractid_idx 
+   CREATE INDEX idx_nyc_census_tract_geoms_tractid 
      ON nyc_census_tract_geoms (tractid);
 
 
@@ -78,7 +78,7 @@ Join the table of tract geometries to the table of tract attributes with a stand
   ON g.tractid = a.tractid;
     
   -- Index the geometries
-  CREATE INDEX nyc_census_tract_gidx 
+  CREATE INDEX sidx_nyc_census_tract 
     ON nyc_census_tracts USING GIST (geom);
     
 

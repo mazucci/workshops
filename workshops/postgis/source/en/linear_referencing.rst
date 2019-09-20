@@ -42,29 +42,29 @@ We can convert the **nyc_subway_stations** into an "event table" relative to the
   WITH ordered_nearest AS (
   SELECT 
     ST_GeometryN(streets.geom,1) AS streets_geom, 
-    streets.gid AS streets_gid,
+    streets.id AS streets_id,
     subways.geom AS subways_geom, 
-    subways.gid AS subways_gid,
+    subways.id AS subways_id,
     ST_Distance(streets.geom, subways.geom) AS distance
   FROM nyc_streets streets 
     JOIN nyc_subway_stations subways 
     ON ST_DWithin(streets.geom, subways.geom, 200) 
-  ORDER BY subways_gid, distance ASC
+  ORDER BY subways_id, distance ASC
   )
   -- We use the 'distinct on' PostgreSQL feature to get the first
   -- street (the nearest) for each unique street gid. We can then
   -- pass that one street into ST_LineLocatePoint along with
   -- its candidate subway station to calculate the measure.
   SELECT 
-    DISTINCT ON (subways_gid) 
-    subways_gid, 
-    streets_gid,
+    DISTINCT ON (subways_id) 
+    subways_id, 
+    streets_id,
     ST_LineLocatePoint(streets_geom, subways_geom) AS measure,
     distance
   FROM ordered_nearest;
 
   -- Primary keys are useful for visualization softwares
-  ALTER TABLE nyc_subway_station_events ADD PRIMARY KEY (subways_gid);
+  ALTER TABLE nyc_subway_station_events ADD PRIMARY KEY (subways_id);
 
 Once we have an event table, it's fun to turn it back into a spatial view, so we can visualize the events relative to the original points they were derived from.
 
@@ -84,12 +84,12 @@ And we can join the **nyc_subway_station_events** tables back to the **nyc_stree
   -- New view that turns events back into spatial objects
   CREATE OR REPLACE VIEW nyc_subway_stations_lrs AS
   SELECT 
-    events.subways_gid,
+    events.subways_id,
     ST_LineInterpolatePoint(ST_GeometryN(streets.geom, 1), events.measure)AS geom,
-    events.streets_gid
+    events.streets_id
   FROM nyc_subway_station_events events
   JOIN nyc_streets streets 
-  ON (streets.gid = events.streets_gid);
+  ON (streets.id = events.streets_id);
 
 Viewing the original (red star) and event (blue circle) points with the streets, you can see how the events are snapped directly to the closest street lines.
 
@@ -104,10 +104,10 @@ Viewing the original (red star) and event (blue circle) points with the streets,
 Function List
 -------------
 
-* `ST_LineInterpolatePoint(geometry A, double measure) <http://postgis.net/docs/manual-2.1/ST_LineInterpolatePoint.html>`_: Returns a point interpolated along a line.
-* `ST_LineLocatePoint(geometry A, geometry B) <http://postgis.net/docs/manual-2.1/ST_LineLocatePoint.html>`_: Returns a float between 0 and 1 representing the location of the closest point on LineString to the given Point. 
-* `ST_Line_Substring(geometry A, double from, double to) <http://postgis.net/docs/manual-2.1/ST_Line_Substring.html>`_: Return a linestring being a substring of the input one starting and ending at the given fractions of total 2d length. 
-* `ST_Locate_Along_Measure(geometry A, double measure) <http://postgis.net/docs/manual-2.1/ST_Locate_Along_Measure.html>`_: Return a derived geometry collection value with elements that match the specified measure. 
-* `ST_Locate_Between_Measures(geometry A, double from, double to) <http://postgis.net/docs/manual-2.1/ST_Locate_Between_Measures.html>`_: Return a derived geometry collection value with elements that match the specified range of measures inclusively. 
-* `ST_AddMeasure(geometry A, double from, double to) <http://postgis.net/docs/manual-2.1/ST_AddMeasure.html>`_: Return a derived geometry with measure elements linearly interpolated between the start and end points. If the geometry has no measure dimension, one is added. 
+* `ST_LineInterpolatePoint(geometry A, double measure) <http://postgis.net/docs/ST_LineInterpolatePoint.html>`_: Returns a point interpolated along a line.
+* `ST_LineLocatePoint(geometry A, geometry B) <http://postgis.net/docs/ST_LineLocatePoint.html>`_: Returns a float between 0 and 1 representing the location of the closest point on LineString to the given Point. 
+* `ST_Line_Substring(geometry A, double from, double to) <http://www.postgis.org/docs/ST_Line_Substring.html>`_: Return a linestring being a substring of the input one starting and ending at the given fractions of total 2d length. 
+* `ST_LocateAlong(geometry A, double measure, double offset) <https://postgis.net/docs/ST_LocateAlong.html>`_: Return a derived geometry collection value with elements that match the specified measure. 
+* `ST_Locate_Between(geometry A, double from, double to, double offset) <https://postgis.net/docs/ST_LocateBetween.html>`_: Return a derived geometry collection value with elements that match the specified range of measures inclusively. 
+* `ST_AddMeasure(geometry A, double from, double to) <http://postgis.net/docs/ST_AddMeasure.html>`_: Return a derived geometry with measure elements linearly interpolated between the start and end points. If the geometry has no measure dimension, one is added. 
 

@@ -43,7 +43,36 @@ Exact equality is determined by comparing two geometries, vertex by vertex, in o
       THEN 'Exactly Equal' ELSE 'Not Exactly Equal' end
     FROM polygons as a, polygons as b;
 
-.. image:: ./equality/start14.png
+  ::
+
+
+     name    |   name    |       case        
+  -----------+-----------+-------------------
+   Polygon 1 | Polygon 1 | Exactly Equal
+   Polygon 1 | Polygon 2 | Not Exactly Equal
+   Polygon 1 | Polygon 3 | Not Exactly Equal
+   Polygon 1 | Polygon 4 | Not Exactly Equal
+   Polygon 1 | Polygon 5 | Not Exactly Equal
+   Polygon 2 | Polygon 1 | Not Exactly Equal
+   Polygon 2 | Polygon 2 | Exactly Equal
+   Polygon 2 | Polygon 3 | Not Exactly Equal
+   Polygon 2 | Polygon 4 | Not Exactly Equal
+   Polygon 2 | Polygon 5 | Not Exactly Equal
+   Polygon 3 | Polygon 1 | Not Exactly Equal
+   Polygon 3 | Polygon 2 | Not Exactly Equal
+   Polygon 3 | Polygon 3 | Exactly Equal
+   Polygon 3 | Polygon 4 | Not Exactly Equal
+   Polygon 3 | Polygon 5 | Not Exactly Equal
+   Polygon 4 | Polygon 1 | Not Exactly Equal
+   Polygon 4 | Polygon 2 | Not Exactly Equal
+   Polygon 4 | Polygon 3 | Not Exactly Equal
+   Polygon 4 | Polygon 4 | Exactly Equal
+   Polygon 4 | Polygon 5 | Not Exactly Equal
+   Polygon 5 | Polygon 1 | Not Exactly Equal
+   Polygon 5 | Polygon 2 | Not Exactly Equal
+   Polygon 5 | Polygon 3 | Not Exactly Equal
+   Polygon 5 | Polygon 4 | Not Exactly Equal
+   Polygon 5 | Polygon 5 | Exactly Equal
 
 In this example, the polygons are only equal to themselves, not to other seemingly equivalent polygons (as in the case of Polygons 1 through 3).  In the case of Polygons 1, 2, and 3, the vertices are in identical positions but are defined in differing orders.  Polygon 4 has colinear (and thus redundant) vertices on the hexagon edges causing inequality with Polygon 1.
 

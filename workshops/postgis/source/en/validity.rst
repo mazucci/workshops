@@ -94,9 +94,8 @@ We can use the :command:`ST_IsValid(geometry)` function to test our tables too:
  -------------------------+---------------+-----------------------------------------------------------
   Howard Beach            | Queens        | Self-intersection[597264.083368305 4499924.54228856]
   Corona                  | Queens        | Self-intersection[595483.058764138 4513817.95350787]
-  Steinway                | Queens        | Self-intersection[593545.572199759 4514735.20870587]
   Red Hook                | Brooklyn      | Self-intersection[584306.820375986 4502360.51774956]
-
+  Steinway                | Queens        | Self-intersection[593545.572199759 4514735.20870587]
 
 
 Repairing Invalidity

@@ -133,7 +133,8 @@ An area test can confirm that our union operation did not lose any geometry. Fir
 
   SELECT SubStr(blkid,1,5) AS countyid, Sum(ST_Area(geom)) AS area
   FROM nyc_census_blocks 
-  GROUP BY countyid;
+  GROUP BY countyid
+  ORDER BY countyid;
 
 ::
 
@@ -193,7 +194,7 @@ The same answer! We have successfully built an NYC county table from our census 
 Function List
 -------------
 
-`ST_AsText(text) <http://postgis.net/docs/manual-2.1/ST_AsText.html>`_: Returns the Well-Known Text (WKT) representation of the geometry/geography without SRID metadata.
+`ST_AsText(text) <http://postgis.net/docs/ST_AsText.html>`_: Returns the Well-Known Text (WKT) representation of the geometry/geography without SRID metadata.
 
 `ST_Buffer(geometry, distance) <http://postgis.net/docs/manual-2.1/ST_Buffer.html>`_: For geometry: Returns a geometry that represents all points whose distance from this Geometry is less than or equal to distance. Calculations are in the Spatial Reference System of this Geometry. For geography: Uses a planar transform wrapper. 
 

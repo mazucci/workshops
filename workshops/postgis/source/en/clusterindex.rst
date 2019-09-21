@@ -31,9 +31,9 @@ Let's cluster our ``nyc_census_blocks`` based on their spatial index:
 .. code-block:: sql
 
   -- Cluster the blocks based on their spatial index
-  CLUSTER nyc_census_blocks USING nyc_census_blocks_geom_gist;
+  CLUSTER nyc_census_blocks USING sidx_nyc_census_blocks_geom;
 
-The command re-writes the ``nyc_census_blocks`` in the order defined by the spatial index ``nyc_census_blocks_geom_gist``. Can you perceive a speed difference? Probably not, because the table is quite small and easily fits into memory, so disk access overhead doesn't affect performance.
+The command re-writes the ``nyc_census_blocks`` in the order defined by the spatial index ``sidx_nyc_census_blocks_geom``. Can you perceive a speed difference? Probably not, because the table is quite small and easily fits into memory, so disk access overhead doesn't affect performance.
 
 One of the surprises of the R-Tree is that an R-Tree built incrementally on spatial data might not have high spatial coherence of the leaves. For example, see this visualization of the spatial index leaves of an index on roads in the province of British Columbia.
 

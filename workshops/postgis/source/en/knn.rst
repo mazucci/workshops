@@ -120,7 +120,7 @@ One side of the index-based distance operator must be a literal geometry value. 
 
 Remember that all the calculations are being done using geometries. Here's what the map looks like for the results of the query:
 
-.. image:: ./screenshots/knn0.jpg
+.. image:: ./screenshots/knn0.png
 
 We can see that the station falls right on the Wall Street line, and within the Wall Street box, so the **<->** operator computes the distance between geometries giving the proper answer.
 

@@ -122,7 +122,7 @@ Remember that all the calculations are being done using geometries. Here's what 
 
 .. image:: ./screenshots/knn0.png
 
-We can see that the station falls right on the Wall Street line, and within the Wall Street box, so the **<->** operator computes the distance between geometries giving the proper answer.
+We can see that the station falls right on the Wall Street line so the **<->** operator computes the distance between geometries giving the proper answer.
 
 .. note:: 
 

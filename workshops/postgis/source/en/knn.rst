@@ -122,7 +122,7 @@ Remember that all the calculations are being done using geometries. Here's what 
 
 .. image:: ./screenshots/knn0.png
 
-We can see that the station falls right on the Wall Street line so the **<->** operator computes the distance between geometries giving the proper answer.
+We can see that the station falls right on the Wall Street line so the **<->** operator computes the distance between geometries giving the proper answer. Moreover, the :command:`ST_Distance` is in alignment with the order provided by the **<->** operator, proving the knn functionality works!
 
 .. note:: 
 
@@ -164,7 +164,7 @@ There are a number of large street features with big boxes that **also** overlap
 
 .. image:: ./screenshots/knn3.jpg
 
-This may not give the results we were expecting but since it operates in bounding boxes, it provides better performance than the query using **<->**. In case we had a very large table we can limit our search by using **<#>** and then use **<->** to get the accurate nearest neighbours.
+This may not give the results we were expecting but since it operates in bounding boxes, it provides better performance than the query using **<->**. In case we had a very large table we could limit our search by using **<#>** and then use **<->** in a subset to get the accurate nearest neighbours.
   
 `knn <-> <http://postgis.net/docs/geometry_distance_knn.html>`_: returns the 2D distance between two geometries.
 `knn <#> <http://postgis.net/docs/geometry_distance_box.html>`_: returns the distance between two bounding boxes.

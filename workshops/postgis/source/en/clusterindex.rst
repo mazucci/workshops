@@ -56,13 +56,13 @@ The geohash algorithm only works on data in geographic (longitude/latitude) coor
 
 .. code-block:: sql
 
-  CREATE INDEX nyc_census_blocks_geohash ON nyc_census_blocks (ST_GeoHash(ST_Transform(geom,4326)));
+  CREATE INDEX geohash_nyc_census_blocks ON nyc_census_blocks (ST_GeoHash(ST_Transform(geom,4326)));
 
 Once you have a geohash index, clustering on it uses the same syntax as the R-Tree clustering.
 
 .. code-block:: sql
 
-  CLUSTER nyc_census_blocks USING nyc_census_blocks_geohash;
+  CLUSTER nyc_census_blocks USING geohash_nyc_census_blocks;
 
 Now your data is nicely arranged in spatially correlated order!
 
@@ -70,4 +70,4 @@ Now your data is nicely arranged in spatially correlated order!
 Function List
 -------------
 
-`ST_GeoHash(geometry A) <http://postgis.net/docs/manual-2.1/ST_GeoHash.html>`_: Returns a text string representing the GeoHash of the bounds of the object. 
+`ST_GeoHash(geometry A) <http://postgis.net/docs/ST_GeoHash.html>`_: Returns a text string representing the GeoHash of the bounds of the object. 

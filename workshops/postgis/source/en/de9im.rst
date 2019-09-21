@@ -76,8 +76,8 @@ However, the power of DE9IM matrices is not in generating them, but in using the
 
 .. code-block:: sql
 
-  CREATE TABLE lakes ( id serial primary key, geom geometry );
-  CREATE TABLE docks ( id serial primary key, good boolean, geom geometry );
+  CREATE TABLE lakes ( id serial primary key, geom geometry(POLYGON) );
+  CREATE TABLE docks ( id serial primary key, good boolean, geom geometry(LINESTRING) );
 
   INSERT INTO lakes ( geom ) 
     VALUES ( 'POLYGON ((100 200, 140 230, 180 310, 280 310, 390 270, 400 210, 320 140, 215 141, 150 170, 100 200))');
@@ -90,6 +90,10 @@ However, the power of DE9IM matrices is not in generating them, but in using the
 	  ('LINESTRING (350 300, 400 320)',false),
 	  ('LINESTRING (370 230, 420 240)',false),
 	  ('LINESTRING (370 180, 390 160)',false);
+	  
+.. note::
+
+   In versions of PostGIS >= 2.0.0 the behavior to add geometry columns changed and it is now possible to specify the type of geometry and srid while creating a table as done in the previous query to create the **Lakes** and **Docks** tables. Before, the `AddGeometryColumn <https://postgis.net/docs/AddGeometryColumn.html>`_ function had to be used to specify the geometry column after the creation of the table, both ways are now possible.
 
 Suppose we have a data model that includes **Lakes** and **Docks**, and suppose further that Docks must be inside lakes, and must touch the boundary of their containing lake at one end. Can we find all the docks in our database that obey that rule?
 
@@ -165,11 +169,11 @@ Sure!
 
 .. code-block:: sql
 
-  SELECT a.gid, b.gid 
-  FROM nyc_census_blocks a, nyc_census_blocks b 
-  WHERE ST_Intersects(a.geom, b.geom) 
-    AND ST_Relate(a.geom, b.geom, '2********') 
-    AND a.gid != b.gid
+  SELECT a.id, b.id
+  FROM nyc_census_blocks a, nyc_census_blocks b
+  WHERE ST_Intersects(a.geom, b.geom)
+    AND ST_Relate(a.geom, b.geom, '2********')
+    AND a.id != b.id
   LIMIT 10;
 
   -- Answer: 10, there's some funny business
@@ -183,14 +187,14 @@ We can test for that by looking for streets that intersect (so we have a join) b
 
 .. code-block:: sql
 
-  SELECT a.gid, b.gid 
+  SELECT a.id, b.id 
   FROM nyc_streets a, nyc_streets b 
   WHERE ST_Intersects(a.geom, b.geom) 
     AND NOT ST_Relate(a.geom, b.geom, '****0****') 
-    AND a.gid != b.gid
+    AND a.id != b.id
   LIMIT 10;
 
-  -- Answer: This happens, so the data is not end-noded.
+  -- Answer: 10, this happens, so the data is not end-noded.
 
 
 

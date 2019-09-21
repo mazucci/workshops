@@ -147,18 +147,18 @@ Unfortunately, no.
 
 ::
 
-  id   |                               name                               
--------+------------------------------------------------------------------
- 17315 | Pearl St
- 17364 | South St
- 17394 | Wall St
- 17411 | Pine St
- 17378 | FDR Dr
- 17236 | 
- 17241 | West Side Highway; West St; West Side Highway; West Side Highway
- 17322 | Broadway
- 17382 | FDR Dr
- 17399 | Broad St
+      id   |                               name                               
+    -------+------------------------------------------------------------------
+     17315 | Pearl St
+     17364 | South St
+     17394 | Wall St
+     17411 | Pine St
+     17378 | FDR Dr
+     17236 | 
+     17241 | West Side Highway; West St; West Side Highway; West Side Highway
+     17322 | Broadway
+     17382 | FDR Dr
+     17399 | Broad St
 
 There are a number of large street features with big boxes that **also** overlap the station and yield a box distance of zero. 
 

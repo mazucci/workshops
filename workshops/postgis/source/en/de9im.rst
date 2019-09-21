@@ -93,7 +93,7 @@ However, the power of DE9IM matrices is not in generating them, but in using the
 	  
 .. note::
 
-   In versions of PostGIS >= 2.0.0 the behavior to add geometry columns changed and it is now possible to specify the type of geometry and srid while creating a table as done in the previous query to create the **Lakes** and **Docks** tables. Before, the `AddGeometryColumn <https://postgis.net/docs/AddGeometryColumn.html>`_ function had to be used to specify the geometry column after the creation of the table, both ways are now possible.
+   In versions of PostGIS >= 2.0 the behavior to add geometry columns changed and it is now possible to specify the type of geometry and srid while creating a table as done in the previous query to create the **Lakes** and **Docks** tables. Before, the `AddGeometryColumn <https://postgis.net/docs/AddGeometryColumn.html>`_ function had to be used to specify the geometry column after the creation of the table, both ways are now possible.
 
 Suppose we have a data model that includes **Lakes** and **Docks**, and suppose further that Docks must be inside lakes, and must touch the boundary of their containing lake at one end. Can we find all the docks in our database that obey that rule?
 

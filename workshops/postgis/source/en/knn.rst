@@ -165,7 +165,6 @@ There are a number of large street features with big boxes that **also** overlap
 .. image:: ./screenshots/knn3.jpg
 
 This may not give the results we were expecting but since it operates in bounding boxes, it provides better performance than the query using **<->**. In case we had a very large table we can limit our search by using **<#>** and then use **<->** to get the accurate nearest neighbours.
-    ORDER BY 
   
-`knn <->: <http://postgis.net/docs/geometry_distance_knn.html>`_ returns the 2D distance between two geometries.
-`knn <#>: <http://postgis.net/docs/geometry_distance_box.html>`_ returns the distance between two bounding boxes.
+`knn <-> <http://postgis.net/docs/geometry_distance_knn.html>`_: returns the 2D distance between two geometries.
+`knn <#> <http://postgis.net/docs/geometry_distance_box.html>`_: returns the distance between two bounding boxes.

@@ -187,6 +187,11 @@ This may not give the results we were expecting but since it operates on boundin
     geom <->
       'SRID=26918;POINT(583571.905921312 4506714.34119218)'::geometry
   LIMIT 1;
+
+
+    id   |  name   
+  -------+---------
+   17394 | Wall St
   
 `knn <-> <http://postgis.net/docs/geometry_distance_knn.html>`_: returns the 2D distance between two geometries.
 

@@ -6,6 +6,7 @@ Advanced Geometry Constructions
 The ``nyc_subway_stations`` layer has provided us with lots of interesting examples so far, but there is something striking about it:
 
 .. image:: ./advanced_geometry_construction/adv_geom0.png
+  :height: 700px
 
 Although it is a database of all the stations, it doesn't allow easy visualization of routes! In this chapter we will use advanced features of PostgreSQL and PostGIS to build up a new linear routes layer from the point layer of subway stations.
 
@@ -27,6 +28,7 @@ Here are the stops for the 'Q' train:
 In this picture, the stops are labelled with their unique ``id`` primary key.
 
 .. image:: ./advanced_geometry_construction/adv_geom01.png
+   :height: 700px
 
 If we start at one of the end stations, the next station on the line seems to always be the closest. We can repeat the process each time as long as we exclude all the previously found stations from our search.
 
@@ -93,6 +95,7 @@ When you run the query, you get each geometry in the order it is found (which is
 Which looks like this:
 
 .. image:: ./advanced_geometry_construction/adv_geom03.png
+   :height: 700px
 
 *Success!*
 
@@ -105,7 +108,8 @@ Let's tackle the hard problem first, figuring out the first station on a route w
 
 Our 'Q' train stops can serve as a starting point. What characterizes the end stations of the route?
 
-.. image:: ./advanced_geometry_construction/adv_geom2.jpg
+.. image:: ./advanced_geometry_construction/adv_geom01.png
+   :height: 700px
 
 One answer is "they are the most northerly and southerly stations". However, imagine if the 'Q' train ran from east to west. Would the condition still hold?
 
@@ -215,6 +219,8 @@ Now we can find the center point by collecting all the stations for each route i
 The center point of the collection of 'Q' train stops looks like this:
 
 .. image:: ./advanced_geometry_construction/adv_geom04.png
+   :height: 700px
+
 
 So the northern most stop, the end point, appears to also be the stop furthest from the center. Let's calculate the furthest point for every route.
 

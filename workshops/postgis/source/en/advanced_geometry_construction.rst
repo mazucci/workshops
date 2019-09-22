@@ -5,7 +5,7 @@ Advanced Geometry Constructions
 
 The ``nyc_subway_stations`` layer has provided us with lots of interesting examples so far, but there is something striking about it:
 
-.. image:: ./advanced_geometry_construction/adv_geom0.jpg
+.. image:: ./advanced_geometry_construction/adv_geom0.png
 
 Although it is a database of all the stations, it doesn't allow easy visualization of routes! In this chapter we will use advanced features of PostgreSQL and PostGIS to build up a new linear routes layer from the point layer of subway stations.
 
@@ -20,13 +20,13 @@ Here are the stops for the 'Q' train:
 
 .. code-block:: sql
 
-  SELECT s.gid, s.geom
+  SELECT s.id, s.geom
   FROM nyc_subway_stations s
   WHERE (strpos(s.routes, 'Q') <> 0);
 
-In this picture, the stops are labelled with their unique ``gid`` primary key.
+In this picture, the stops are labelled with their unique ``id`` primary key.
 
-.. image:: ./advanced_geometry_construction/adv_geom1.jpg
+.. image:: ./advanced_geometry_construction/adv_geom01.png
 
 If we start at one of the end stations, the next station on the line seems to always be the closest. We can repeat the process each time as long as we exclude all the previously found stations from our search.
 
@@ -35,23 +35,23 @@ There are two ways to run such an iterative routine in a database:
 * Using a procedural language, like `PL/PgSQL <http://www.postgresql.org/docs/current/static/plpgsql.html>`_.
 * Using recursive `common table expressions <http://www.postgresql.org/docs/current/static/queries-with.html>`_.
 
-Common table expressions (CTE) have the virtue of not requiring a function definition to run. Here's the CTE to calculate the route line of the 'Q' train, starting from the northernmost stop (where ``gid`` is 304).
+Common table expressions (CTE) have the virtue of not requiring a function definition to run. Here's the CTE to calculate the route line of the 'Q' train, starting from the northernmost stop (where ``id`` is 365).
 
 .. code-block:: sql
 
   WITH RECURSIVE next_stop(geom, idlist) AS (
       (SELECT 
         geom,
-        ARRAY[gid] AS idlist
+        ARRAY[id] AS idlist
       FROM nyc_subway_stations 
-      WHERE gid = 304)
+      WHERE id = 365)
       UNION ALL
       (SELECT 
         s.geom,
-        array_append(n.idlist, s.gid) AS idlist
+        array_append(n.idlist, s.id) AS idlist
       FROM nyc_subway_stations s, next_stop n
       WHERE strpos(s.routes, 'Q') != 0
-      AND NOT n.idlist @> ARRAY[s.gid]
+      AND NOT n.idlist @> ARRAY[s.id]
       ORDER BY ST_Distance(n.geom, s.geom) ASC
       LIMIT 1)
   )
@@ -59,16 +59,16 @@ Common table expressions (CTE) have the virtue of not requiring a function defin
 
 The CTE consists of two halves, unioned together:
 
-* The first half establishes a start point for the expression. We get the initial geometry and initialize the array of visited identifiers, using the record of "gid" 304 (the end of the line).
+* The first half establishes a start point for the expression. We get the initial geometry and initialize the array of visited identifiers, using the record of "id" 365 (the end of the line).
 * The second half iterates until it finds no further records. At each iteration it takes in the value at the previous iteration via the self-reference to "next_stop". We search every stop on the Q line (**strpos(s.routes,'Q')**) that we have not already added to our visited list (**NOT n.idlist @> ARRAY[s.gid]**) and order them by their distance from the previous point, taking just the first one (the nearest).
   
 Beyond the recursive CTE itself, there are a number of advanced PostgreSQL array features being used here:
 
 * We are using ARRAY! PostgreSQL supports arrays of any type. In this case we have an array of integers, but we could also build an array of geometries, or any other PostgreSQL type.
 * We are using **array_append** to build up our array of visited identifiers.
-* We are using the **@>** array operator ("array contains") to find which of the Q train stations we have already visited. The **@>** operators requires ARRAY values on both sides, so we have to turn the individual "gid" numbers into single-entry arrays using the ARRAY[] syntax.
+* We are using the **@>** array operator ("array contains") to find which of the Q train stations we have already visited. The **@>** operators requires ARRAY values on both sides, so we have to turn the individual "id" numbers into single-entry arrays using the ARRAY[] syntax.
   
-When you run the query, you get each geometry in the order it is found (which is the route order), as well as the list of identifiers already visited. Wrapping the geometries into the PostGIS `ST_MakeLine <http://postgis.net/docs/manual-2.1/ST_MakeLine.html>`_ aggregate function turns the set of geometries into a single linear output, constructed in the provided order.
+When you run the query, you get each geometry in the order it is found (which is the route order), as well as the list of identifiers already visited. Wrapping the geometries into the PostGIS `ST_MakeLine <http://postgis.net/docs/ST_MakeLine.html>`_ aggregate function turns the set of geometries into a single linear output, constructed in the provided order.
 
 .. code-block:: sql
 
@@ -92,7 +92,7 @@ When you run the query, you get each geometry in the order it is found (which is
 
 Which looks like this:
 
-.. image:: ./advanced_geometry_construction/adv_geom3.jpg
+.. image:: ./advanced_geometry_construction/adv_geom03.png
 
 *Success!*
 
@@ -173,7 +173,7 @@ We can build on this result by joining it back to the ``nyc_subway_stations`` ta
     FROM nyc_subway_stations ORDER BY route
   ),
   stops AS (
-    SELECT s.gid, s.geom, r.route
+    SELECT s.id, s.geom, r.route
     FROM routes r
     JOIN nyc_subway_stations s
     ON (strpos(s.routes, r.route) <> 0)
@@ -182,12 +182,13 @@ We can build on this result by joining it back to the ``nyc_subway_stations`` ta
 
 ::
 
-   gid |                      geom                      | route 
+   id  |                        geom                        | route 
   -----+----------------------------------------------------+-------
      2 | 010100002026690000CBE327F938CD21415EDBE1572D315141 | 1
-     3 | 010100002026690000C676635D10CD2141A0ECDB6975305141 | 1
-    20 | 010100002026690000AE59A3F82C132241D835BA14D1435141 | 1
-    22 | 0101000020266900003495A303D615224116DA56527D445141 | 1
+     1 | 010100002026690000C676635D10CD2141A0ECDB6975305141 | 1
+    36 | 010100002026690000AE59A3F82C132241D835BA14D1435141 | 1
+    37 | 0101000020266900003495A303D615224116DA56527D445141 | 1
+
                               ...etc...
 
 Now we can find the center point by collecting all the stations for each route into a single multi-point, and calculating the centroid of that multi-point.
@@ -199,7 +200,7 @@ Now we can find the center point by collecting all the stations for each route i
     FROM nyc_subway_stations ORDER BY route
   ),
   stops AS (
-    SELECT s.gid, s.geom, r.route
+    SELECT s.id, s.geom, r.route
     FROM routes r
     JOIN nyc_subway_stations s
     ON (strpos(s.routes, r.route) <> 0)
@@ -213,7 +214,7 @@ Now we can find the center point by collecting all the stations for each route i
 
 The center point of the collection of 'Q' train stops looks like this:
 
-.. image:: ./advanced_geometry_construction/adv_geom4.jpg
+.. image:: ./advanced_geometry_construction/adv_geom04.png
 
 So the northern most stop, the end point, appears to also be the stop furthest from the center. Let's calculate the furthest point for every route.
 
@@ -224,7 +225,7 @@ So the northern most stop, the end point, appears to also be the stop furthest f
     FROM nyc_subway_stations ORDER BY route
   ),
   stops AS (
-    SELECT s.gid, s.geom, r.route
+    SELECT s.id, s.geom, r.route
     FROM routes r
     JOIN nyc_subway_stations s
     ON (strpos(s.routes, r.route) <> 0)
@@ -260,16 +261,16 @@ But first, we need to turn our recursive CTE expression into a function we can c
   WITH RECURSIVE next_stop(geom, idlist) AS (
       (SELECT 
         geom AS geom,
-        ARRAY[gid] AS idlist
+        ARRAY[id] AS idlist
       FROM nyc_subway_stations 
-      WHERE gid = $1)
+      WHERE id = $1)
       UNION ALL
       (SELECT 
         s.geom AS geom,
-        array_append(n.idlist, s.gid) AS idlist
+        array_append(n.idlist, s.id) AS idlist
       FROM nyc_subway_stations s, next_stop n
       WHERE strpos(s.routes, $2) != 0
-      AND NOT n.idlist @> ARRAY[s.gid]
+      AND NOT n.idlist @> ARRAY[s.id]
       ORDER BY ST_Distance(n.geom, s.geom) ASC
       LIMIT 1)
   )
@@ -277,7 +278,7 @@ But first, we need to turn our recursive CTE expression into a function we can c
   FROM next_stop;
   $$
   language 'sql';
-
+  
 And now we are ready to go!
 
 .. code-block:: sql
@@ -290,7 +291,7 @@ And now we are ready to go!
   ),
   -- Joined back to stops! Every route has all its stops!
   stops AS (
-    SELECT s.gid, s.geom, r.route
+    SELECT s.id, s.geom, r.route
     FROM routes r
     JOIN nyc_subway_stations s
     ON (strpos(s.routes, r.route) <> 0)
@@ -315,13 +316,13 @@ And now we are ready to go!
   )
   -- Pass the route/stop information into the linear route generation function!
   SELECT 
-    ascii(route) AS gid, -- QGIS likes numeric primary keys
+    ascii(route) AS id, -- QGIS likes numeric primary keys
     route, 
-    walk_subway(gid, route) AS geom 
+    walk_subway(id::Integer, route) AS geom 
   FROM first_stops;
 
   -- Do some housekeeping too 
-  ALTER TABLE nyc_subway_lines ADD PRIMARY KEY (gid);
+  ALTER TABLE nyc_subway_lines ADD PRIMARY KEY (id);
 
 Here's what our final table looks like visualized in QGIS:
 
@@ -341,5 +342,5 @@ See Also
 * `PostgreSQL Arrays <http://www.postgresql.org/docs/current/static/arrays.html>`_
 * `PostgreSQL Array Functions <http://www.postgresql.org/docs/current/static/functions-array.html>`_
 * `PostgreSQL Recursive Common TABLE Expressions <http://www.postgresql.org/docs/current/static/queries-with.html>`_
-* `PostGIS ST_MakeLine <http://postgis.net/docs/manual-2.1/ST_MakeLine.html>`_
+* `PostGIS ST_MakeLine <http://postgis.net/docs/ST_MakeLine.html>`_
   

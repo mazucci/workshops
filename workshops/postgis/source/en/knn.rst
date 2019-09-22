@@ -164,7 +164,29 @@ There are a number of large street features with big boxes that **also** overlap
 
 .. image:: ./screenshots/knn3.jpg
 
-This may not give the results we were expecting but since it operates in bounding boxes, it provides better performance than the query using **<->**. In case we had a very large table we could limit our search by using **<#>** and then use **<->** in a subset to get the accurate nearest neighbours.
+This may not give the results we were expecting but since it operates on bounding boxes, it provides better performance than the query using **<->**. In case we had a very large table we could enhance the query processing by limiting our search first using the operator **<#>** and then use the operator **<->** in the resulting subset to get the accurate nearest neighbours:
+
+.. code-block:: sql
+
+    -- "Closest" 100 streets to Broad Street station are?
+  WITH closest_candidates AS (
+    SELECT 
+      streets.id, 
+      streets.name,
+      streets.geom
+    FROM 
+      nyc_streets streets
+    ORDER BY 
+      streets.geom <#> 
+      'SRID=26918;POINT(583571.905921312 4506714.34119218)'::geometry
+    LIMIT 100
+  )
+  SELECT id, name
+  FROM closest_candidates
+  ORDER BY 
+    geom <->
+      'SRID=26918;POINT(583571.905921312 4506714.34119218)'::geometry
+  LIMIT 1;
   
 `knn <-> <http://postgis.net/docs/geometry_distance_knn.html>`_: returns the 2D distance between two geometries.
 

@@ -6,7 +6,6 @@ Advanced Geometry Constructions
 The ``nyc_subway_stations`` layer has provided us with lots of interesting examples so far, but there is something striking about it:
 
 .. image:: ./advanced_geometry_construction/adv_geom0.png
-  :height: 700px
 
 Although it is a database of all the stations, it doesn't allow easy visualization of routes! In this chapter we will use advanced features of PostgreSQL and PostGIS to build up a new linear routes layer from the point layer of subway stations.
 

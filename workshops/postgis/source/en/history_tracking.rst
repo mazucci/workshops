@@ -32,7 +32,6 @@ Using this information it is possible to reconstruct the state of the edit table
 
     CREATE TABLE nyc_streets_history (
       hid SERIAL PRIMARY KEY,
-      gid INTEGER,
       id FLOAT8,
       name VARCHAR(200),
       oneway VARCHAR(10),
@@ -49,8 +48,8 @@ Using this information it is possible to reconstruct the state of the edit table
   .. code-block:: sql
 
     INSERT INTO nyc_streets_history 
-      (gid, id, name, oneway, type, geom, created, created_by)
-       SELECT gid, id, name, oneway, type, geom, now(), current_user
+      (id, name, oneway, type, geom, created, created_by)
+       SELECT id, name, oneway, type, geom, now(), current_user
        FROM nyc_streets;
 	
 * Now we need three triggers on the active table, for INSERT, DELETE and UPDATE actions. First we create the trigger functions, then bind them to the table as triggers.
@@ -61,9 +60,9 @@ Using this information it is possible to reconstruct the state of the edit table
     $$
       BEGIN
         INSERT INTO nyc_streets_history 
-          (gid, id, name, oneway, type, geom, created, created_by)
+          (id, name, oneway, type, geom, created, created_by)
         VALUES
-          (NEW.gid, NEW.id, NEW.name, NEW.oneway, NEW.type, NEW.geom,
+          (NEW.id, NEW.name, NEW.oneway, NEW.type, NEW.geom,
            current_timestamp, current_user);
         RETURN NEW;
       END;
@@ -82,7 +81,7 @@ Using this information it is possible to reconstruct the state of the edit table
       BEGIN
         UPDATE nyc_streets_history 
           SET deleted = current_timestamp, deleted_by = current_user
-          WHERE deleted IS NULL and gid = OLD.gid;
+          WHERE deleted IS NULL and id = OLD.id;
         RETURN NULL;
       END;
     $$ 
@@ -90,8 +89,7 @@ Using this information it is possible to reconstruct the state of the edit table
       
     CREATE TRIGGER nyc_streets_delete_trigger
     AFTER DELETE ON nyc_streets
-      FOR EACH ROW EXECUTE PROCEDURE nyc_streets_delete();
-     
+      FOR EACH ROW EXECUTE PROCEDURE nyc_streets_delete();     
 
   For an update, we first mark the active history record as deleted, then insert a new record for the updated state::
 
@@ -101,12 +99,12 @@ Using this information it is possible to reconstruct the state of the edit table
 
         UPDATE nyc_streets_history 
           SET deleted = current_timestamp, deleted_by = current_user
-          WHERE deleted IS NULL and gid = OLD.gid;
+          WHERE deleted IS NULL and id = OLD.id;
 
         INSERT INTO nyc_streets_history 
-          (gid, id, name, oneway, type, geom, created, created_by)
+          (id, name, oneway, type, geom, created, created_by)
         VALUES
-          (NEW.gid, NEW.id, NEW.name, NEW.oneway, NEW.type, NEW.geom,
+          (NEW.id, NEW.name, NEW.oneway, NEW.type, NEW.geom,
            current_timestamp, current_user);
 
         RETURN NEW;
@@ -118,7 +116,7 @@ Using this information it is possible to reconstruct the state of the edit table
     CREATE TRIGGER nyc_streets_update_trigger
     AFTER UPDATE ON nyc_streets
       FOR EACH ROW EXECUTE PROCEDURE nyc_streets_update();
-
+      
 
 Editing the Table
 ~~~~~~~~~~~~~~~~~
@@ -166,7 +164,7 @@ We can use this logic to create a query, or a view, of the state of the data in 
       WHERE created < (now() - '10min'::interval)
       AND ( deleted IS NULL OR deleted > (now() - '10min'::interval) );    
 
-We can also create views that show just what a particular used has added, for example:
+We can also create views that show just what a particular user has added, for example:
 
 .. code-block:: sql
 

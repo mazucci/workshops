@@ -188,6 +188,7 @@ This may not give the results we were expecting but since it operates on boundin
       'SRID=26918;POINT(583571.905921312 4506714.34119218)'::geometry
   LIMIT 1;
 
+::
 
     id   |  name   
   -------+---------

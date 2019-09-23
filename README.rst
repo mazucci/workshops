@@ -1,7 +1,5 @@
-Boundless Workshops Repository
+Workshop Repository
 ==============================
-
-This repository is for all free (Creative Commons) workshop materials created and/or hosted by Boundless. These workshops can be found in built form on Boundless Connect.
 
 Directory structure
 -------------------

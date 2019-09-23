@@ -81,6 +81,4 @@ Reload configuration
 
 After these changes are made, save changes and reload the configuration. The easiest way to do this is to restart the PostgreSQL service.
 
-* In pgAdmin, right-click the server **PostGIS (localhost:5432)** and select *Disconnect*.
-* In Windows Services (``services.msc``) right-click **OpenGeo PostgreSQL** and select *Restart*.
-* Back in pgAdmin, click the server again select *Disconnect*.
+* In pgAdmin, right-click the server **PostGIS (localhost:5432)** and select *Reload Configuration*.
